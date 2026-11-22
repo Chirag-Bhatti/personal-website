@@ -13,13 +13,8 @@ export const chapterSignalBackground: Record<ExperienceSignal, string> = {
 }
 
 export function formatExperienceDuration(duration: { years: number; months: number }) {
-  const parts = [
-    duration.years > 0 ? `${duration.years} ${duration.years === 1 ? 'year' : 'years'}` : '',
-    duration.months > 0 ? `${duration.months} ${duration.months === 1 ? 'month' : 'months'}` : '',
-  ].filter(Boolean)
-
   return {
-    label: parts.join(' ') || '0 months',
+    label: `${duration.years} ${duration.years === 1 ? 'year' : 'years'} ${duration.months} mos`,
     iso: `P${duration.years}Y${duration.months}M`,
   }
 }

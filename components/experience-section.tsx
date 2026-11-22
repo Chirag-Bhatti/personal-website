@@ -50,7 +50,7 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
         <div className="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground sm:justify-end">
           <p className="tabular-nums">
             <time dateTime={start.iso}>{start.label}</time>
-            {' – '}
+            {' - '}
             {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
           </p>
           <span className={cn('size-1.5 -translate-y-px rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />

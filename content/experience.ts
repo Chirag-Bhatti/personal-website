@@ -37,7 +37,7 @@ export const experienceCompanies: ExperienceCompany[] = [
     name: 'Softwire',
     sector: 'Software Engineering',
     signal: 'green',
-    start: { year: 2021 },
+    start: { year: 2021, month: 1 },
     end: null,
     duration: { years: 5, months: 0 },
     roles: [
@@ -67,8 +67,8 @@ export const experienceCompanies: ExperienceCompany[] = [
     name: 'Mercedes AMG High Performance Powertrains',
     sector: 'Formula 1',
     signal: 'amber',
-    start: { year: 2017 },
-    end: { year: 2019 },
+    start: { year: 2017, month: 1 },
+    end: { year: 2019, month: 6 },
     duration: { years: 2, months: 5 },
     roles: [
       {
@@ -97,8 +97,8 @@ export const experienceCompanies: ExperienceCompany[] = [
     name: 'Automotive OEM',
     sector: 'Automotive',
     signal: 'red',
-    start: { year: 2015 },
-    end: { year: 2017 },
+    start: { year: 2015, month: 1 },
+    end: { year: 2017, month: 1 },
     duration: { years: 2, months: 0 },
     roles: [
       {
@@ -118,8 +118,8 @@ export const experienceCompanies: ExperienceCompany[] = [
     name: 'Jaguar Land Rover',
     sector: 'Automotive',
     signal: 'red',
-    start: { year: 2013 },
-    end: { year: 2015 },
+    start: { year: 2013, month: 1 },
+    end: { year: 2015, month: 1 },
     duration: { years: 2, months: 0 },
     roles: [
       {
