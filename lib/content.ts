@@ -13,10 +13,10 @@ export const profile = {
 
 export const sections = [
   { id: 'start', label: 'Start', sector: 'Start' },
-  { id: 'tools', label: 'Tools', sector: 'Technology stack' },
-  { id: 'track', label: 'Experience', sector: 'Engineering journey' },
+  { id: 'tools', label: 'Tools', sector: 'Tools' },
+  { id: 'track', label: 'Experience', sector: 'Experience' },
   { id: 'garage', label: 'Projects', sector: 'Projects' },
-  { id: 'finish', label: 'Finish', sector: 'Contact' },
+  { id: 'finish', label: 'Finish', sector: 'Finish' },
 ] as const
 
 export type SectionId = (typeof sections)[number]['id']
