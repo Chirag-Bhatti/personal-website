@@ -2,11 +2,11 @@ export const toolsSectionContent = {
   eyebrow: 'Tools / 04 domains',
   heading: 'The tools behind the work.',
   introduction:
-    'A working toolkit across the stack, from user-facing experiences to dependable production systems.',
+    'I\'ve used a breadth of technologies across multiple software domains, and able to pick up new things quickly. Whatever the problem\'s required, I\'ve learnt it.',
 }
 
 export const confidenceLevels = {
-  core: { label: 'Core strength', className: 'bg-accent' },
+  core: { label: 'Core skill', className: 'bg-accent' },
   comfortable: { label: 'Comfortable', className: 'bg-caution' },
   familiar: { label: 'Familiar', className: 'bg-muted-foreground' },
 } as const
@@ -14,83 +14,109 @@ export const confidenceLevels = {
 export const toolCategories = [
   {
     name: 'Frontend',
-    descriptor: 'The interface layer',
+    descriptor: '',
     groups: [
       {
-        name: 'Languages',
+        name: 'Languages & Frameworks',
         items: [
           { name: 'TypeScript', confidence: 'core' },
           { name: 'HTML & CSS', confidence: 'comfortable' },
+          { name: 'SASS', confidence: 'comfortable' },
+          { name: 'Cypress', confidence: 'comfortable' },
+          { name: 'React', confidence: 'familiar' },
+          { name: 'Angular', confidence: 'familiar' },
         ],
       },
       {
-        name: 'Frameworks',
+        name: 'Components',
         items: [
-          { name: 'React', confidence: 'core' },
-          { name: 'Next.js', confidence: 'comfortable' },
+          { name: 'Gov components', confidence: 'comfortable' },
+          { name: 'Material UI', confidence: 'familiar' },
+          { name: 'Angular Material', confidence: 'familiar' },
+          { name: 'styled-components', confidence: 'familiar' },
         ],
       },
       {
         name: 'Tools',
         items: [
-          { name: 'Tailwind CSS', confidence: 'comfortable' },
-          { name: 'Accessibility', confidence: 'familiar' },
+          { name: 'Node.js', confidence: 'core' },
+          { name: 'Browser dev tools', confidence: 'core' },
+          { name: 'Nunjucks', confidence: 'comfortable' },
+          { name: 'BrowserStack', confidence: 'comfortable' },
+          { name: 'Figma', confidence: 'familiar' },
+          { name: 'Contentstack', confidence: 'familiar' },
+          { name: 'Gatsby', confidence: 'familiar' },
         ],
       },
     ],
   },
   {
     name: 'Backend',
-    descriptor: 'Services & data',
+    descriptor: '',
     groups: [
       {
-        name: 'Languages',
+        name: 'Languages & Frameworks',
         items: [
+          { name: 'Java', confidence: 'core' },
+          { name: 'Typescript', confidence: 'core' },
           { name: 'Python', confidence: 'comfortable' },
-          { name: 'SQL', confidence: 'comfortable' },
+          { name: 'C#', confidence: 'familiar' },
+          { name: 'Spring', confidence: 'familiar' },
+          { name: 'Fastify', confidence: 'familiar' },
+          { name: 'FastAPI', confidence: 'familiar' },
+          { name: '.NET', confidence: 'familiar' },
+          { name: 'Pydantic', confidence: 'familiar' },
         ],
       },
-      { name: 'Frameworks', items: [{ name: 'FastAPI', confidence: 'familiar' }] },
+      { name: 'Databases', 
+        items: [
+          { name: 'PostgreSQL', confidence: 'comfortable' },
+          { name: 'DynamoDB', confidence: 'comfortable' },
+        ] 
+      },
       {
         name: 'Tools',
         items: [
-          { name: 'Node.js', confidence: 'comfortable' },
-          { name: 'PostgreSQL', confidence: 'familiar' },
-          { name: 'REST APIs', confidence: 'comfortable' },
+          { name: 'Node.js', confidence: 'core' },
+          { name: 'Postman', confidence: 'core' },
+          { name: 'Swagger', confidence: 'comfortable' },
         ],
       },
     ],
   },
   {
     name: 'Infrastructure',
-    descriptor: 'Cloud & platforms',
+    descriptor: '',
     groups: [
       {
-        name: 'Tools',
+        name: 'Infrastructure as Code',
         items: [
-          { name: 'AWS', confidence: 'comfortable' },
-          { name: 'Docker', confidence: 'comfortable' },
-          { name: 'Kubernetes', confidence: 'familiar' },
-          { name: 'Terraform', confidence: 'familiar' },
-          { name: 'Linux', confidence: 'comfortable' },
-          { name: 'Git', confidence: 'core' },
+          { name: 'Terraform', confidence: 'core' },
+          { name: 'Cloudformation', confidence: 'comfortable' },
         ],
       },
+      {
+        name: 'Platforms',
+        items: [
+          { name: 'AWS', confidence: 'core' },
+        ],
+      }
     ],
   },
   {
     name: 'DevOps / SRE',
-    descriptor: 'Delivery & reliability',
+    descriptor: '',
     groups: [
       {
         name: 'Tools',
         items: [
-          { name: 'CI/CD', confidence: 'comfortable' },
-          { name: 'GitHub Actions', confidence: 'comfortable' },
-          { name: 'Observability', confidence: 'familiar' },
-          { name: 'Prometheus', confidence: 'familiar' },
-          { name: 'Grafana', confidence: 'familiar' },
-          { name: 'Incident response', confidence: 'comfortable' },
+          { name: 'Docker', confidence: 'core' },
+          { name: 'CI/CD', confidence: 'core' },
+          { name: 'Git', confidence: 'core' },
+          { name: 'Cribl', confidence: 'comfortable' },
+          { name: 'Paketo', confidence: 'comfortable' },
+          { name: 'Splunk', confidence: 'familiar' },
+          { name: 'Bash scripting', confidence: 'familiar' },
         ],
       },
     ],

@@ -3,7 +3,7 @@ export const startContent = {
   heading: 'From developing engines to software.',
   introBeforeName: 'I’m ',
   introAfterName:
-    ', a lead software engineer with over 5 years experience. I career-switched from Automotive and Formula 1 where I developed high-tech engines. I now build software with the same obsession for quality, reliability and performance.',
+    ', a lead software engineer with over 5 years experience. I career-switched from Automotive and Formula 1 where I developed state-of-the-art engines, and have been building software with the same obsession for quality, reliability and performance since.',
   exploreLabel: 'Explore',
   contactLabel: 'Get in Touch',
   codePanel: {
