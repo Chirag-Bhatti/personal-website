@@ -26,7 +26,7 @@ export function CareerJourney() {
             <rect x="0" y="0" width="220" height="140" rx="2" />
           </clipPath>
         </defs>
-        <g transform="matrix(0.97 0.09 0 0.97 908 305)" clipPath="url(#career-journey-code-screen)">
+        <g transform="matrix(0.97 0.115 0 0.95 908 303)" clipPath="url(#career-journey-code-screen)">
           <rect width="220" height="140" fill="#0d151d" />
           <rect width="220" height="17" fill="#17232d" />
           <circle cx="8" cy="8.5" r="2" fill="#d28c78" />
