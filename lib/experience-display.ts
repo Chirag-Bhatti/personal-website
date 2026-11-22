@@ -14,7 +14,7 @@ export const chapterSignalBackground: Record<ExperienceSignal, string> = {
 
 export function formatExperienceDuration(duration: { years: number; months: number }) {
   return {
-    label: `${duration.years} ${duration.years === 1 ? 'year' : 'years'} ${duration.months} mos`,
+    label: `${duration.years} yrs ${duration.months} mos`,
     iso: `P${duration.years}Y${duration.months}M`,
   }
 }
