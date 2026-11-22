@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils'
 export function RaceTimeline() {
   return (
     <Section id="track">
-      <SectionHeader sectionId="track" eyebrow="The Track" title="Three sectors, one career.">
-        Every track is split into sectors. My track covers the Automotive, Formula&nbsp;1 and Software Engineering sectors.
+      <SectionHeader sectionId="track" eyebrow="Track / career timeline" title="A career in three chapters.">
+        Starting with what I do now, then looking back through Formula&nbsp;1 to the automotive engineering foundations that shaped my approach.
       </SectionHeader>
 
       <ol className="mt-16 flex flex-col">
@@ -31,7 +31,7 @@ function SectorRow({ sector }: { sector: Sector }) {
         </span>
         <div className="min-w-0">
           <h3 className="text-xl font-semibold">
-            <span className="sr-only">Sector {sector.number}: </span>
+            <span className="sr-only">Chapter {sector.number}: </span>
             {sector.name}
           </h3>
           <SectorDuration months={sector.durationMonths} />
