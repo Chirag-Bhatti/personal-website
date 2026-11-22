@@ -9,7 +9,7 @@ export function CareerJourney() {
     <figure className="relative isolate aspect-[4/3] overflow-hidden rounded-lg border border-border/70 bg-card shadow-2xl shadow-black/30">
       <Image
         src="/images/career-journey.png"
-        alt="A continuous visual journey from precision automotive engineering, through Formula 1, into software engineering."
+        alt="A sports coupe on a road, a Formula racing car on track, and a computer setup on a raised platform."
         fill
         priority
         sizes="(min-width: 1024px) 42vw, 100vw"
