@@ -2,17 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
-import { THEME_STORAGE_KEY } from '@/lib/theme-preference'
+import { THEME_COLORS, THEME_STORAGE_KEY } from '@/lib/theme-preference'
 
 type Theme = 'light' | 'dark'
 
 function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle('dark', theme === 'dark')
   document.documentElement.style.colorScheme = theme
-  document.querySelector('meta[name="theme-color"]')?.setAttribute(
-    'content',
-    theme === 'dark' ? '#0b0c0d' : '#f7f6f2',
-  )
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[theme])
 }
 
 export function ThemeToggle() {

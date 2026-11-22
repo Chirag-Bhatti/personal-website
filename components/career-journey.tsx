@@ -11,7 +11,7 @@ export function CareerJourney() {
         src="/images/career-journey.png"
         alt="An automotive engine with a turbocharger, a Formula 1 hybrid powertrain, and a monitor displaying code."
         fill
-        priority
+        preload
         sizes="(min-width: 1024px) 42vw, 100vw"
         className="object-cover"
       />
