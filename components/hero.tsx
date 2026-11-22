@@ -32,8 +32,8 @@ export function Hero() {
               I now build software with the same obsession for quality, reliability and performance.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <LinkButton href="#track">
-                Explore experience
+              <LinkButton href="#tools">
+                Explore
                 <ArrowDown aria-hidden="true" />
               </LinkButton>
               <LinkButton href="#finish" variant="outline">
