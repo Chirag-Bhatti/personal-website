@@ -3,39 +3,97 @@ export const toolsSectionContent = {
   heading: 'The tools behind the work.',
   introduction:
     'A working toolkit across the stack, from user-facing experiences to dependable production systems.',
+  confidenceNote: 'Example confidence indicators — adjust the tiers to match your experience.',
 }
+
+export const confidenceLevels = {
+  core: { label: 'Core strength', marker: '●', className: 'text-accent' },
+  comfortable: { label: 'Comfortable', marker: '●', className: 'text-primary' },
+  familiar: { label: 'Familiar', marker: '●', className: 'text-muted-foreground' },
+} as const
 
 export const toolCategories = [
   {
     name: 'Frontend',
     descriptor: 'The interface layer',
     groups: [
-      { name: 'Languages', items: ['TypeScript', 'HTML & CSS'] },
-      { name: 'Frameworks', items: ['React', 'Next.js'] },
-      { name: 'Tools', items: ['Tailwind CSS', 'Accessibility'] },
+      {
+        name: 'Languages',
+        items: [
+          { name: 'TypeScript', confidence: 'core' },
+          { name: 'HTML & CSS', confidence: 'comfortable' },
+        ],
+      },
+      {
+        name: 'Frameworks',
+        items: [
+          { name: 'React', confidence: 'core' },
+          { name: 'Next.js', confidence: 'comfortable' },
+        ],
+      },
+      {
+        name: 'Tools',
+        items: [
+          { name: 'Tailwind CSS', confidence: 'comfortable' },
+          { name: 'Accessibility', confidence: 'familiar' },
+        ],
+      },
     ],
   },
   {
     name: 'Backend',
     descriptor: 'Services & data',
     groups: [
-      { name: 'Languages', items: ['Python', 'SQL'] },
-      { name: 'Frameworks', items: ['FastAPI'] },
-      { name: 'Tools', items: ['Node.js', 'PostgreSQL', 'REST APIs'] },
+      {
+        name: 'Languages',
+        items: [
+          { name: 'Python', confidence: 'comfortable' },
+          { name: 'SQL', confidence: 'comfortable' },
+        ],
+      },
+      { name: 'Frameworks', items: [{ name: 'FastAPI', confidence: 'familiar' }] },
+      {
+        name: 'Tools',
+        items: [
+          { name: 'Node.js', confidence: 'comfortable' },
+          { name: 'PostgreSQL', confidence: 'familiar' },
+          { name: 'REST APIs', confidence: 'comfortable' },
+        ],
+      },
     ],
   },
   {
     name: 'Infrastructure',
     descriptor: 'Cloud & platforms',
     groups: [
-      { name: 'Tools', items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'Git'] },
+      {
+        name: 'Tools',
+        items: [
+          { name: 'AWS', confidence: 'comfortable' },
+          { name: 'Docker', confidence: 'comfortable' },
+          { name: 'Kubernetes', confidence: 'familiar' },
+          { name: 'Terraform', confidence: 'familiar' },
+          { name: 'Linux', confidence: 'comfortable' },
+          { name: 'Git', confidence: 'core' },
+        ],
+      },
     ],
   },
   {
     name: 'DevOps / SRE',
     descriptor: 'Delivery & reliability',
     groups: [
-      { name: 'Tools', items: ['CI/CD', 'GitHub Actions', 'Observability', 'Prometheus', 'Grafana', 'Incident response'] },
+      {
+        name: 'Tools',
+        items: [
+          { name: 'CI/CD', confidence: 'comfortable' },
+          { name: 'GitHub Actions', confidence: 'comfortable' },
+          { name: 'Observability', confidence: 'familiar' },
+          { name: 'Prometheus', confidence: 'familiar' },
+          { name: 'Grafana', confidence: 'familiar' },
+          { name: 'Incident response', confidence: 'comfortable' },
+        ],
+      },
     ],
   },
 ]

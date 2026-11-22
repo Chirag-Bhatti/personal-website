@@ -1,4 +1,4 @@
-import { toolsSectionContent, toolCategories } from '@/content/tools'
+import { confidenceLevels, toolsSectionContent, toolCategories } from '@/content/tools'
 import { Section, SectionHeader } from '@/components/section'
 
 export function ToolsSection() {
@@ -12,7 +12,19 @@ export function ToolsSection() {
         {toolsSectionContent.introduction}
       </SectionHeader>
 
-      <ul className="mt-16 grid gap-4 sm:grid-cols-2">
+      <div className="mt-10 flex flex-col gap-4 border-y py-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-sm text-xs text-muted-foreground">{toolsSectionContent.confidenceNote}</p>
+        <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Confidence level key">
+          {Object.entries(confidenceLevels).map(([key, level]) => (
+            <li key={key} className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+              <span aria-hidden="true" className={level.className}>{level.marker}</span>
+              {level.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <ul className="mt-10 grid gap-4 sm:grid-cols-2">
         {toolCategories.map((category, index) => (
           <li key={category.name}>
             <article className="group flex h-full flex-col rounded-lg border bg-card p-6 transition-colors hover:border-primary/50 md:p-8">
@@ -30,11 +42,19 @@ export function ToolsSection() {
                       {group.name}
                     </h4>
                     <ul className="mt-2 flex flex-wrap gap-2">
-                      {group.items.map((item) => (
-                        <li key={item} className="rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
-                          {item}
-                        </li>
-                      ))}
+                      {group.items.map((item) => {
+                        const level = confidenceLevels[item.confidence as keyof typeof confidenceLevels]
+
+                        return (
+                          <li key={item.name} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
+                            <span>{item.name}</span>
+                            <span className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-wider" aria-label={`${level.label} confidence`}>
+                              <span aria-hidden="true" className={level.className}>{level.marker}</span>
+                              {level.label}
+                            </span>
+                          </li>
+                        )
+                      })}
                     </ul>
                   </section>
                 ))}
