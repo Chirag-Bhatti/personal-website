@@ -4,6 +4,7 @@ import { useImperativeHandle, useRef } from 'react'
 import { profile, sections, type SectionId } from '@/lib/content'
 import { useActiveSection, useScrollProgress } from '@/hooks/use-race-progress'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 const sectionIds = sections.map((s) => s.id)
 
@@ -38,7 +39,10 @@ export function RaceChrome() {
             </span>
             <span className="sr-only sm:not-sr-only">{profile.name}</span>
           </a>
-          <SectionNav activeId={activeId} />
+          <div className="flex items-center gap-2">
+            <SectionNav activeId={activeId} />
+            <ThemeToggle />
+          </div>
         </div>
         <div className="h-0.5 w-full bg-secondary" aria-hidden="true">
           <div ref={barRef} className="h-full origin-left scale-x-0 bg-primary" />
