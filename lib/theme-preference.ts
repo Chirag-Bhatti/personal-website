@@ -7,16 +7,16 @@ export const THEME_INITIALIZATION_SCRIPT = `
     const currentKey = ${JSON.stringify(THEME_STORAGE_KEY)}
     const legacyKey = ${JSON.stringify(LEGACY_THEME_STORAGE_KEY)}
     const savedTheme = localStorage.getItem(currentKey) ?? localStorage.getItem(legacyKey)
+    const theme = savedTheme === 'dark' ? 'dark' : 'light'
+    const root = document.documentElement
+    root.classList.toggle('dark', theme === 'dark')
+    root.style.colorScheme = theme
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      theme === 'dark' ? ${JSON.stringify(THEME_COLORS.dark)} : ${JSON.stringify(THEME_COLORS.light)},
+    )
 
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      const root = document.documentElement
-      root.classList.toggle('dark', savedTheme === 'dark')
-      root.style.colorScheme = savedTheme
-      document.querySelector('meta[name="theme-color"]')?.setAttribute(
-        'content',
-        savedTheme === 'dark' ? ${JSON.stringify(THEME_COLORS.dark)} : ${JSON.stringify(THEME_COLORS.light)},
-      )
-
+    if (savedTheme === 'dark' || savedTheme === 'light') {
       if (!localStorage.getItem(currentKey)) localStorage.setItem(currentKey, savedTheme)
     }
   } catch {}
