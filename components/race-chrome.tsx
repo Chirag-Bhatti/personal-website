@@ -20,7 +20,7 @@ export function RaceChrome() {
 
   useScrollProgress((progress) => {
     const percent = Math.round(progress * 100)
-    if (barRef.current) barRef.current.style.transform = `scaleX(${progress})`
+    if (barRef.current) barRef.current.style.width = `${progress * 100}%`
     if (progressRef.current) {
       progressRef.current.setAttribute('aria-valuenow', String(percent))
       progressRef.current.setAttribute('aria-valuetext', `${percent}% complete`)
@@ -68,7 +68,7 @@ export function RaceChrome() {
                 aria-valuetext="0% complete"
                 className="h-1.5 min-w-8 flex-1 overflow-hidden rounded-full bg-secondary"
               >
-                <div ref={barRef} className="h-full origin-left scale-x-0 rounded-full bg-primary" />
+                <div ref={barRef} className="h-full rounded-full bg-primary" style={{ width: '0%' }} />
               </div>
               <span ref={percentRef} className="w-9 shrink-0 text-right font-mono text-[10px] tabular-nums text-muted-foreground">
                 000%
