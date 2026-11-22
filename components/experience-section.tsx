@@ -104,17 +104,14 @@ function ExperienceRole({
         <h4 className="font-medium">{role.title}</h4>
         {showCompany ? <p className="mt-1 text-xs text-muted-foreground">{role.company}</p> : null}
         {role.highlights.length > 0 ? (
-          <div className="mt-3">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Highlights &amp; impact</p>
-            <ul className="flex flex-col gap-2.5">
-              {role.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <span className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[signal])} aria-hidden="true" />
-                  {highlight}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-3 flex flex-col gap-2.5">
+            {role.highlights.map((highlight) => (
+              <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                <span className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[signal])} aria-hidden="true" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
         ) : null}
       </div>
       <p className="font-mono text-xs tabular-nums text-muted-foreground sm:pt-1">
