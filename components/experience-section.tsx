@@ -1,6 +1,11 @@
-import { experienceChapters, experienceSectionContent, type ExperienceChapter, type ExperienceRole, type ExperienceSignal } from '@/content/experience'
+import { experienceCompanies, experienceSectionContent, type ExperienceCompany, type ExperienceRole } from '@/content/experience'
 import { Section, SectionHeader } from '@/components/section'
-import { chapterSignalBackground, chapterSignalText, formatExperienceDuration } from '@/lib/experience-display'
+import {
+  chapterSignalBackground,
+  chapterSignalText,
+  formatExperienceDate,
+  formatExperienceDuration,
+} from '@/lib/experience-display'
 import { cn } from '@/lib/utils'
 
 export function ExperienceSection() {
@@ -14,93 +19,82 @@ export function ExperienceSection() {
         {experienceSectionContent.introduction}
       </SectionHeader>
 
-      <ol className="mt-16 flex flex-col">
-        {experienceChapters.map((chapter) => (
-          <ExperienceChapterCard key={chapter.number} chapter={chapter} />
+      <ol className="mt-12 flex flex-col gap-8 sm:mt-16 sm:gap-10">
+        {experienceCompanies.map((company, index) => (
+          <li key={company.name}>
+            <ExperienceCompanyCard company={company} index={index + 1} />
+          </li>
         ))}
       </ol>
     </Section>
   )
 }
 
-function ExperienceChapterCard({ chapter }: { chapter: ExperienceChapter }) {
+function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany; index: number }) {
+  const start = formatExperienceDate(company.start)
+  const end = company.end ? formatExperienceDate(company.end) : null
+  const duration = formatExperienceDuration(company.duration)
+
   return (
-    <li className="grid gap-6 border-t py-10 md:grid-cols-[220px_1fr] md:gap-12">
-      <div className="flex items-start gap-4 md:flex-col md:gap-3">
-        <span
-          className={cn('font-mono text-6xl font-semibold leading-none tabular-nums', chapterSignalText[chapter.signal])}
-          aria-hidden="true"
-        >
-          S{chapter.number}
-        </span>
+    <article className="rounded-lg border bg-card p-5 sm:p-7">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
         <div className="min-w-0">
-          <h3 className="text-xl font-semibold">
-            <span className="sr-only">Chapter {chapter.number}: </span>
-            {chapter.name}
-          </h3>
-          <ExperienceChapterDuration months={chapter.durationMonths} />
+          <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <span className="tabular-nums text-muted-foreground" aria-hidden="true">
+              {String(index).padStart(2, '0')} /
+            </span>
+            <span className={chapterSignalText[company.signal]}>{company.sector}</span>
+          </p>
+          <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">{company.name}</h3>
         </div>
-      </div>
+        <div className="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground sm:justify-end">
+          <p className="tabular-nums">
+            <time dateTime={start.iso}>{start.label}</time>
+            {' - '}
+            {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
+          </p>
+          <span className={cn('size-1.5 -translate-y-px rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />
+          <p>
+            <time dateTime={duration.iso}>{duration.label}</time>
+          </p>
+        </div>
+      </header>
 
-      <div className="min-w-0">
-        <p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground">{chapter.summary}</p>
-        {chapter.roles.map((role) => (
-          <ExperienceRoleCard key={role.title} role={role} signal={chapter.signal} />
+      <ol className="mt-6 flex flex-col gap-6 border-t pt-6" aria-label={`${company.name} roles`}>
+        {company.roles.map((role) => (
+          <li key={`${role.title}-${role.start.year}`}>
+            <ExperienceRole role={role} signal={company.signal} />
+          </li>
         ))}
-      </div>
-    </li>
+      </ol>
+    </article>
   )
 }
 
-function ExperienceChapterDuration({ months }: { months: number | null }) {
-  const className = 'mt-1 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground'
+function ExperienceRole({ role, signal }: { role: ExperienceRole; signal: ExperienceCompany['signal'] }) {
+  const start = formatExperienceDate(role.start)
+  const end = role.end ? formatExperienceDate(role.end) : null
 
-  if (months === null) {
-    return (
-      <p className={className}>
-        <span className="relative flex size-2" aria-hidden="true">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:animate-none" />
-          <span className="relative inline-flex size-2 rounded-full bg-accent" />
-        </span>
-        Live
+  return (
+    <article className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-6">
+      <div className="min-w-0">
+        <h4 className="font-medium">{role.title}</h4>
+        {role.highlights.length > 0 ? (
+          <ul className="mt-3 flex flex-col gap-2.5">
+            {role.highlights.map((highlight) => (
+              <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                <span className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[signal])} aria-hidden="true" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+      <p className="font-mono text-xs tabular-nums text-muted-foreground sm:pt-1">
+        <time dateTime={start.iso}>{start.label}</time>
+        {' – '}
+        {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
       </p>
-    )
-  }
-
-  const duration = formatExperienceDuration(months)
-  return (
-    <p className={className}>
-      <span className="sr-only">Chapter duration: </span>
-      <time dateTime={duration.iso} className="tabular-nums">
-        {duration.label}
-      </time>
-    </p>
-  )
-}
-
-function ExperienceRoleCard({ role, signal }: { role: ExperienceRole; signal: ExperienceSignal }) {
-  return (
-    <article className="mt-6 rounded-lg border bg-card p-6">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h4 className="min-w-0 font-medium">
-          {role.title} <span className="text-muted-foreground">· {role.company}</span>
-        </h4>
-        <p className="font-mono text-xs tabular-nums text-muted-foreground">
-          <time dateTime={String(role.start)}>{role.start}</time>
-          {' – '}
-          {role.end === null ? 'Present' : <time dateTime={String(role.end)}>{role.end}</time>}
-        </p>
-      </div>
-      {role.highlights.length > 0 ? (
-        <ul className="mt-4 flex flex-col gap-2.5">
-          {role.highlights.map((highlight) => (
-            <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-              <span className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[signal])} aria-hidden="true" />
-              {highlight}
-            </li>
-          ))}
-        </ul>
-      ) : null}
     </article>
   )
 }
