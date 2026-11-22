@@ -60,41 +60,33 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
         </div>
       </header>
 
-      <ol className="mt-4 flex flex-col gap-6 border-t pt-4" aria-label={`${company.name} roles`}>
+      <ol className="mt-4 flex flex-col gap-4 border-t pt-4" aria-label={`${company.name} roles`}>
         {company.roles.map((role) => (
           <li key={`${role.title}-${role.start.year}`}>
-            <ExperienceRole role={role} signal={company.signal} />
+            <ExperienceRole role={role} />
           </li>
         ))}
       </ol>
+      <div className="mt-4 border-t pt-4">
+        <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Overview</h4>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{company.description}</p>
+      </div>
     </article>
   )
 }
 
-function ExperienceRole({ role, signal }: { role: ExperienceRole; signal: ExperienceCompany['signal'] }) {
+function ExperienceRole({ role }: { role: ExperienceRole }) {
   const start = formatExperienceDate(role.start)
   const end = role.end ? formatExperienceDate(role.end) : null
 
   return (
-    <article className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-6">
-      <div className="min-w-0">
-        <h4 className="font-medium">{role.title}</h4>
-        {role.highlights.length > 0 ? (
-          <ul className="mt-3 flex flex-col gap-2.5">
-            {role.highlights.map((highlight) => (
-              <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                <span className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[signal])} aria-hidden="true" />
-                {highlight}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
+    <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-6">
+      <h4 className="font-medium">{role.title}</h4>
       <p className="font-mono text-xs tabular-nums text-muted-foreground sm:pt-1">
         <time dateTime={start.iso}>{start.label}</time>
         {' – '}
         {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
       </p>
-    </article>
+    </div>
   )
 }
