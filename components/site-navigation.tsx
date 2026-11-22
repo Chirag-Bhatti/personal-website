@@ -1,24 +1,25 @@
 'use client'
 
 import { useImperativeHandle, useRef } from 'react'
-import { profile, sections, type SectionId } from '@/lib/content'
-import { useActiveSection, useScrollProgress } from '@/hooks/use-race-progress'
+import { pageSections, type PageSectionId } from '@/content/navigation'
+import { siteProfile } from '@/content/profile'
+import { useActivePageSection, usePageScrollProgress } from '@/hooks/use-page-progress'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/theme-toggle'
 
-const sectionIds = sections.map((s) => s.id)
+const sectionIds = pageSections.map((section) => section.id)
 
-const TRACK_PATH =
+const CIRCUIT_PATH =
   'M40 120H150C175 120 185 105 180 85L170 50C166 35 150 30 140 40L115 65C108 72 96 72 92 62L80 30C75 15 55 12 45 25L22 70C12 92 20 120 40 120Z'
 
-export function RaceChrome() {
-  const activeId = useActiveSection(sectionIds)
+export function SiteNavigation() {
+  const activeId = useActivePageSection(sectionIds)
   const barRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const percentRef = useRef<HTMLSpanElement>(null)
-  const trackRef = useRef<TrackMapHandle>(null)
+  const trackRef = useRef<ProgressTrackHandle>(null)
 
-  useScrollProgress((progress) => {
+  usePageScrollProgress((progress) => {
     const percent = Math.round(progress * 100)
     if (barRef.current) barRef.current.style.width = `${progress * 100}%`
     if (progressRef.current) {
@@ -29,7 +30,7 @@ export function RaceChrome() {
     trackRef.current?.setProgress(progress)
   })
 
-  const active = sections.find((s) => s.id === activeId) ?? sections[0]
+  const activeSection = pageSections.find((section) => section.id === activeId) ?? pageSections[0]
 
   return (
     <>
@@ -43,25 +44,25 @@ export function RaceChrome() {
               className="flex size-7 items-center justify-center rounded-sm bg-primary text-xs font-semibold text-primary-foreground"
               aria-hidden="true"
             >
-              {profile.initials}
+              {siteProfile.initials}
             </span>
-            <span className="sr-only sm:not-sr-only">{profile.name}</span>
+            <span className="sr-only sm:not-sr-only">{siteProfile.name}</span>
           </a>
           <div className="flex items-center gap-2">
-            <SectionNav activeId={activeId} />
+            <SectionNavigation activeId={activeId} />
             <ThemeToggle />
           </div>
         </div>
         <div className="border-t">
           <div className="mx-auto flex h-12 max-w-6xl items-center gap-3 px-6">
             <div className="w-24 shrink-0 overflow-hidden font-mono text-[10px] uppercase tracking-widest text-foreground sm:w-32">
-              <span className="block truncate whitespace-nowrap">{active.sector}</span>
+              <span className="block truncate whitespace-nowrap">{activeSection.label}</span>
             </div>
             <div className="flex min-w-0 flex-1 items-center gap-2">
               <div
                 ref={progressRef}
                 role="progressbar"
-                aria-label={`Page progress through ${active.label}`}
+                aria-label={`Page progress through ${activeSection.label}`}
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={0}
@@ -74,7 +75,7 @@ export function RaceChrome() {
                 000%
               </span>
             </div>
-            <TrackMap ref={trackRef} />
+            <ProgressTrack ref={trackRef} />
           </div>
         </div>
       </header>
@@ -82,23 +83,23 @@ export function RaceChrome() {
   )
 }
 
-function SectionNav({ activeId }: { activeId: SectionId }) {
+function SectionNavigation({ activeId }: { activeId: PageSectionId }) {
   return (
     <nav aria-label="Sections">
       <ul className="flex items-center gap-1">
-        {sections.map((s, i) => {
-          const isActive = activeId === s.id
+        {pageSections.map((section, index) => {
+          const isActive = activeId === section.id
           return (
-            <li key={s.id} className={cn(i === 0 && 'hidden md:block')}>
+            <li key={section.id} className={cn(index === 0 && 'hidden md:block')}>
               <a
-                href={`#${s.id}`}
+                href={`#${section.id}`}
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
                   'block rounded-sm px-1 py-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring sm:px-2.5',
                   isActive && 'text-foreground',
                 )}
               >
-                {s.label}
+                {section.label}
               </a>
             </li>
           )
@@ -108,9 +109,9 @@ function SectionNav({ activeId }: { activeId: SectionId }) {
   )
 }
 
-type TrackMapHandle = { setProgress: (progress: number) => void }
+type ProgressTrackHandle = { setProgress: (progress: number) => void }
 
-function TrackMap({ ref }: { ref: React.Ref<TrackMapHandle> }) {
+function ProgressTrack({ ref }: { ref: React.Ref<ProgressTrackHandle> }) {
   const pathRef = useRef<SVGPathElement>(null)
   const carRef = useRef<SVGGElement>(null)
   const lengthRef = useRef(0)
@@ -132,10 +133,10 @@ function TrackMap({ ref }: { ref: React.Ref<TrackMapHandle> }) {
 
   return (
     <svg viewBox="0 0 200 140" className="h-9 w-14 shrink-0 translate-x-3.5 sm:h-10 sm:w-16 sm:translate-x-2" aria-hidden="true">
-      <path d={TRACK_PATH} fill="none" stroke="var(--secondary)" strokeWidth="8" strokeLinejoin="round" />
+      <path d={CIRCUIT_PATH} fill="none" stroke="var(--secondary)" strokeWidth="8" strokeLinejoin="round" />
       <path
         ref={pathRef}
-        d={TRACK_PATH}
+        d={CIRCUIT_PATH}
         pathLength={1}
         fill="none"
         stroke="var(--primary)"

@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script'
+import { THEME_INITIALIZATION_SCRIPT } from '@/lib/theme-preference'
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans', display: 'swap' })
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light dark',
-  themeColor: '#f7f6f2',
+  themeColor: '#0b0c0d',
 }
 
 export default function RootLayout({
@@ -24,8 +26,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark bg-background`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} dark bg-background`}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
+        <Script id="theme-preference" strategy="beforeInteractive">
+          {THEME_INITIALIZATION_SCRIPT}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-caution focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-caution-foreground"

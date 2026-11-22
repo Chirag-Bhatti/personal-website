@@ -2,32 +2,34 @@
 
 import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
-
-const THEME_KEY = 'personal-website-theme'
+import { THEME_STORAGE_KEY } from '@/lib/theme-preference'
 
 type Theme = 'light' | 'dark'
 
 function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle('dark', theme === 'dark')
   document.documentElement.style.colorScheme = theme
+  document.querySelector('meta[name="theme-color"]')?.setAttribute(
+    'content',
+    theme === 'dark' ? '#0b0c0d' : '#f7f6f2',
+  )
 }
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('dark')
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem(THEME_KEY)
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      setTheme(storedTheme)
-      applyTheme(storedTheme)
-    }
+    setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
   }, [])
 
   function toggleTheme() {
     const nextTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(nextTheme)
     applyTheme(nextTheme)
-    window.localStorage.setItem(THEME_KEY, nextTheme)
+
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme)
+    } catch {}
   }
 
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
