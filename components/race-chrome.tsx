@@ -54,12 +54,9 @@ export function RaceChrome() {
         </div>
         <div className="border-t">
           <div className="mx-auto flex h-12 max-w-6xl items-center gap-3 px-6">
-            <div className="flex min-w-0 items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              <span>Lap 1/1</span>
-              <span aria-hidden="true">/</span>
-              <span className="truncate text-foreground">{active.sector}</span>
+            <div className="w-24 shrink-0 overflow-hidden font-mono text-[10px] uppercase tracking-widest text-foreground sm:w-32">
+              <span className="block truncate whitespace-nowrap">{active.sector}</span>
             </div>
-            <TrackMap ref={trackRef} />
             <div className="flex min-w-0 flex-1 items-center gap-2">
               <div
                 ref={progressRef}
@@ -73,10 +70,11 @@ export function RaceChrome() {
               >
                 <div ref={barRef} className="h-full origin-left scale-x-0 rounded-full bg-primary" />
               </div>
-              <span ref={percentRef} className="w-9 text-right font-mono text-[10px] tabular-nums text-muted-foreground">
+              <span ref={percentRef} className="w-9 shrink-0 text-right font-mono text-[10px] tabular-nums text-muted-foreground">
                 000%
               </span>
             </div>
+            <TrackMap ref={trackRef} />
           </div>
         </div>
       </header>
