@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono'
 export const metadata: Metadata = {
   title: 'Chirag Bhatti — Software Engineer, ex-Formula 1',
   description:
-    'Software engineer who switched lanes from mechanical engineering in the automotive and Formula 1 sectors. Career, tools, and projects.',
+    'Software engineer who switched lanes from mechanical engineering in the automotive and Formula 1 sectors. Career, technologies, and projects.',
   generator: 'v0.app',
 }
 

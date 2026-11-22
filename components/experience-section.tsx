@@ -45,7 +45,7 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
             </span>
             <span className={chapterSignalText[company.signal]}>{company.sector}</span>
           </p>
-          <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">{company.name}</h3>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">{company.name}</h3>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground sm:justify-end">
           <p className="tabular-nums">
@@ -60,7 +60,7 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
         </div>
       </header>
 
-      <ol className="mt-6 flex flex-col gap-6 border-t pt-6" aria-label={`${company.name} roles`}>
+      <ol className="mt-4 flex flex-col gap-6 border-t pt-4" aria-label={`${company.name} roles`}>
         {company.roles.map((role) => (
           <li key={`${role.title}-${role.start.year}`}>
             <ExperienceRole role={role} signal={company.signal} />

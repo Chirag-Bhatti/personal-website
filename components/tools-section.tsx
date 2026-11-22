@@ -3,9 +3,9 @@ import { Section, SectionHeader } from '@/components/section'
 
 export function ToolsSection() {
   return (
-    <Section id="tools">
+    <Section id="tech">
       <SectionHeader
-        sectionId="tools"
+        sectionId="tech"
         eyebrow={toolsSectionContent.eyebrow}
         title={toolsSectionContent.heading}
       >
