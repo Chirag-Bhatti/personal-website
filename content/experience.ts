@@ -94,13 +94,22 @@ export const experienceCompanies: ExperienceCompany[] = [
     ],
   },
   {
-    name: 'Automotive OEM',
+    name: 'Jaguar Land Rover',
     sector: 'Automotive',
     signal: 'red',
-    start: { year: 2015, month: 1 },
+    start: { year: 2013, month: 1 },
     end: { year: 2017, month: 1 },
-    duration: { years: 2, months: 0 },
+    duration: { years: 4, months: 0 },
     roles: [
+      {
+        title: 'Graduate Product Development Engineer',
+        start: { year: 2013 },
+        end: { year: 2015 },
+        highlights: [
+          'Gain a breadth of experience across the business through a structure programme of rotations in different departments.',
+          'Completed 3 month rotations in Engine Calibration, 1D engine modelling, Vehicle Performance / Economy / Drivability, Manufacturing and Global Public Relations',
+        ],
+      },
       {
         title: 'Gasoline Engine Calibration Engineer',
         start: { year: 2015 },
@@ -110,25 +119,6 @@ export const experienceCompanies: ExperienceCompany[] = [
           'Devised Design of Experiments to model and optimise engine performance and economy',
           'Diagnosed engine issues on the test bench and in the field',
           'Did the base calibration of a new 3-cylinder engine',
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Jaguar Land Rover',
-    sector: 'Automotive',
-    signal: 'red',
-    start: { year: 2013, month: 1 },
-    end: { year: 2015, month: 1 },
-    duration: { years: 2, months: 0 },
-    roles: [
-      {
-        title: 'Graduate Product Development Engineer',
-        start: { year: 2013 },
-        end: { year: 2015 },
-        highlights: [
-          'Gain a breadth of experience across the business through a structure programme of rotations in different departments.',
-          'Completed 3 month rotations in Engine Calibration, 1D engine modelling, Vehicle Performance / Economy / Drivability, Manufacturing and Global Public Relations',
         ],
       },
     ],
