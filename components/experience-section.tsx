@@ -69,7 +69,17 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
       </ol>
       <div className="mt-4 border-t pt-4">
         <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Overview</h4>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{company.description}</p>
+        <ul className="mt-3 flex flex-col gap-2.5">
+          {company.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+              <span
+                className={cn('mt-2.5 h-px w-3 shrink-0', chapterSignalBackground[company.signal])}
+                aria-hidden="true"
+              />
+              {highlight}
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   )

@@ -21,7 +21,7 @@ export type ExperienceCompany = {
     years: number
     months: number
   }
-  description: string
+  highlights: string[]
   roles: ExperienceRole[]
 }
 
@@ -40,8 +40,9 @@ export const experienceCompanies: ExperienceCompany[] = [
     start: { year: 2021, month: 1 },
     end: null,
     duration: { years: 5, months: 0 },
-    description:
-      'On GOV.UK One Login, led the Logging Tiger Team, standardising log collection and processing in AWS and SIEM. Defined the technical approach, platformed the solution, and delivered complex features.',
+    highlights: [
+      'Gov UK One Login - Tech Lead in the Logging Tiger Team. Standardised log collection and processing in AWS / SIEM tool. Platformed the solution, devised the technical approach and delivered complex features',
+    ],
     roles: [
       {
         title: 'Lead Software Developer / Technical Consultant',
@@ -67,8 +68,14 @@ export const experienceCompanies: ExperienceCompany[] = [
     start: { year: 2017, month: 1 },
     end: { year: 2019, month: 6 },
     duration: { years: 2, months: 5 },
-    description:
-      'Analysed trackside telemetry to optimise energy recovery and deployment, and built Python tools for lap-simulation correlation. Supported test-bench simulations and reliability validation, race-day telemetry and data analysis, and setup decisions at the pit wall and in the factory.',
+    highlights: [
+      'Analysed trackside telemetry to optimise energy recovery and deployment strategies.',
+      'Built Python tooling for lap simulation correlation used across the vehicle performance group.',
+      'Worked on the pit wall and in the factory, delivering setup changes under hard deadlines.',
+      'Run track simulations on test bench, assess performance and reliability, and validate against track data.',
+      'Support race day telemetry and data analysis, diagnose issues, make decisions under extreme time pressure',
+      'Devise tools and code to make test set up quicker and more reliable',
+    ],
     roles: [
       {
         title: 'X1 Performance Development Engineer',
@@ -89,8 +96,14 @@ export const experienceCompanies: ExperienceCompany[] = [
     start: { year: 2013, month: 1 },
     end: { year: 2017, month: 1 },
     duration: { years: 4, months: 0 },
-    description:
-      'Completed graduate rotations in engine calibration, 1D engine modelling, vehicle performance, economy and drivability, manufacturing, and global public relations. Later specialised in gasoline engine calibration, tuning for performance, economy and emissions, designing experiments to optimise engine performance, diagnosing issues, and calibrating a new 3-cylinder engine.',
+    highlights: [
+      'Gain a breadth of experience across the business through a structure programme of rotations in different departments.',
+      'Completed 3 month rotations in Engine Calibration, 1D engine modelling, Vehicle Performance / Economy / Drivability, Manufacturing and Global Public Relations',
+      'After completing the Graduate Programme, began specialisation in tuning engines for performance, economy and emissions',
+      'Devised Design of Experiments to model and optimise engine performance and economy',
+      'Diagnosed engine issues on the test bench and in the field',
+      'Did the base calibration of a new 3-cylinder engine',
+    ],
     roles: [
       {
         title: 'Graduate Product Development Engineer',
