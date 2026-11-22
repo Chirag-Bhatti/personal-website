@@ -50,14 +50,14 @@ function ExperienceCompanyCard({ company }: { company: ExperienceCompany }) {
           </p>
           <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">{company.name}</h3>
         </div>
-        <div className="flex shrink-0 flex-col gap-1 sm:items-end">
-          <p className="font-mono text-xs tabular-nums text-muted-foreground">
+        <div className="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground sm:justify-end">
+          <p className="tabular-nums">
             <time dateTime={start.iso}>{start.label}</time>
             {' – '}
             {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
           </p>
-          <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-            <span className={cn('size-1.5 rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />
+          <span className={cn('size-1.5 rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />
+          <p>
             <time dateTime={duration.iso}>{duration.label}</time>
           </p>
         </div>
