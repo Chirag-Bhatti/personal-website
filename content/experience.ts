@@ -19,9 +19,9 @@ export type ExperienceChapter = {
 
 export const experienceSectionContent = {
   eyebrow: 'Experience / engineering journey',
-  heading: 'From the pit wall to the codebase.',
+  heading: 'What does tuning engines and creating software have in common?',
   introduction:
-    'From power-unit test benches and Formula 1 race weekends to software platforms, the through-line is performance, reliability and finding the limit.',
+    'I\'ve developed strong fundamentals and a systems mindset from thinking about how components work together. The goal whether it\'s been engines or software has always been the same - make it correct / performant / reliable / high quality.',
 }
 
 export const experienceChapters: ExperienceChapter[] = [
@@ -31,7 +31,7 @@ export const experienceChapters: ExperienceChapter[] = [
     name: 'Software Engineering',
     durationMonths: null,
     summary:
-      'My current chapter: bringing the same engineering mindset to frontend, backend, platform and site reliability engineering.',
+      'My current chapter: developing software for a range of public and private sector clients across frontend, backend, platform and devops / site reliability engineering.',
     roles: [
       {
         title: 'Lead Software Developer / Technical Consultant',
