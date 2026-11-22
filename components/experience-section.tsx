@@ -1,6 +1,11 @@
 import { experienceChapters, experienceSectionContent, type ExperienceChapter, type ExperienceRole, type ExperienceSignal } from '@/content/experience'
 import { Section, SectionHeader } from '@/components/section'
-import { chapterSignalBackground, chapterSignalText, formatExperienceDuration } from '@/lib/experience-display'
+import {
+  chapterSignalBackground,
+  chapterSignalText,
+  formatExperienceDate,
+  formatExperienceDuration,
+} from '@/lib/experience-display'
 import { cn } from '@/lib/utils'
 
 export function ExperienceSection() {
@@ -50,7 +55,7 @@ function ExperienceChapterCard({ chapter }: { chapter: ExperienceChapter }) {
 
         <ol className="mt-6 flex flex-col gap-6" aria-label={`${chapter.name} roles`}>
           {chapter.roles.map((role) => (
-            <li key={`${role.title}-${role.start}`}>
+            <li key={`${role.title}-${role.start.year}`}>
               <ExperienceRole role={role} signal={chapter.signal} showCompany={companies.length > 1} />
             </li>
           ))}
@@ -61,31 +66,25 @@ function ExperienceChapterCard({ chapter }: { chapter: ExperienceChapter }) {
 }
 
 function ExperienceChapterDuration({ chapter }: { chapter: ExperienceChapter }) {
-  if (chapter.durationMonths === null) {
-    const firstRoleYear = Math.min(...chapter.roles.map((role) => role.start))
-    const years = new Date().getFullYear() - firstRoleYear
+  const duration = formatExperienceDuration(chapter.duration)
+  const start = formatExperienceDate(chapter.start)
+  const end = chapter.end ? formatExperienceDate(chapter.end) : null
 
-    return (
-      <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-        <span className="relative flex size-2" aria-hidden="true">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:animate-none" />
-          <span className="relative inline-flex size-2 rounded-full bg-accent" />
-        </span>
-        <span className="sr-only">Total time: </span>
-        {years}+ years · Present
-      </p>
-    )
-  }
-
-  const duration = formatExperienceDuration(chapter.durationMonths)
   return (
-    <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-      <span className={cn('size-2 rounded-full', chapterSignalBackground[chapter.signal])} aria-hidden="true" />
-      <span className="sr-only">Total time: </span>
-      <time dateTime={duration.iso} className="tabular-nums">
-        {duration.label}
-      </time>
-    </p>
+    <div className="flex flex-col gap-1 sm:items-end">
+      <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+        <span className={cn('size-2 rounded-full', chapterSignalBackground[chapter.signal])} aria-hidden="true" />
+        <span className="sr-only">Total time: </span>
+        <time dateTime={duration.iso} className="tabular-nums">
+          {duration.label}
+        </time>
+      </p>
+      <p className="font-mono text-xs tabular-nums text-muted-foreground">
+        <time dateTime={start.iso}>{start.label}</time>
+        {' – '}
+        {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
+      </p>
+    </div>
   )
 }
 
@@ -98,6 +97,9 @@ function ExperienceRole({
   signal: ExperienceSignal
   showCompany: boolean
 }) {
+  const start = formatExperienceDate(role.start)
+  const end = role.end ? formatExperienceDate(role.end) : null
+
   return (
     <article className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-6">
       <div className="min-w-0">
@@ -115,9 +117,9 @@ function ExperienceRole({
         ) : null}
       </div>
       <p className="font-mono text-xs tabular-nums text-muted-foreground sm:pt-1">
-        <time dateTime={String(role.start)}>{role.start}</time>
+        <time dateTime={start.iso}>{start.label}</time>
         {' – '}
-        {role.end === null ? 'Present' : <time dateTime={String(role.end)}>{role.end}</time>}
+        {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
       </p>
     </article>
   )
