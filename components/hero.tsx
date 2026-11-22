@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils'
 
 export function Hero() {
   return (
-    <section id="start" aria-labelledby="grid-heading" className="relative overflow-hidden pt-14">
+    <section id="start" aria-labelledby="grid-heading" className="relative overflow-hidden pt-28">
       <div className="hero-pattern pointer-events-none absolute inset-y-0 right-0 w-full lg:w-3/5" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute top-24 -right-32 size-[28rem] rounded-full bg-caution/10 blur-3xl"
+        className="pointer-events-none absolute top-24 -right-32 size-[28rem] rounded-full bg-primary/10 blur-3xl"
         aria-hidden="true"
       />
 
@@ -32,8 +32,8 @@ export function Hero() {
               I now build software with the same obsession for quality, reliability and performance.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <LinkButton href="#track">
-                View the track
+              <LinkButton href="#tools">
+                Explore
                 <ArrowDown aria-hidden="true" />
               </LinkButton>
               <LinkButton href="#finish" variant="outline">

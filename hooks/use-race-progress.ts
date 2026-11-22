@@ -33,24 +33,45 @@ export function useScrollProgress(onProgress: (progress: number) => void) {
   }, [])
 }
 
-/** Tracks which section crosses the upper reading line, re-rendering only on change. */
+/** Tracks the last section to cross the reading line, re-rendering only on change. */
 export function useActiveSection<T extends string>(ids: readonly T[]) {
   const [activeId, setActiveId] = useState<T>(ids[0])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveId(entry.target.id as T)
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      if (ids.length === 0) return
+
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      let nextId = ids[0]
+
+      if (maxScroll > 0 && window.scrollY >= maxScroll - 1) {
+        nextId = ids[ids.length - 1]
+      } else if (window.scrollY > 1) {
+        const readingLine = Math.min(window.innerHeight * 0.4, 320)
+        for (const id of ids) {
+          const section = document.getElementById(id)
+          if (section && section.getBoundingClientRect().top <= readingLine) nextId = id
         }
-      },
-      { rootMargin: '-40% 0px -59% 0px' },
-    )
-    for (const id of ids) {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
+      }
+
+      setActiveId((currentId) => (currentId === nextId ? currentId : nextId))
     }
-    return () => observer.disconnect()
+
+    const scheduleUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      if (frame) cancelAnimationFrame(frame)
+    }
   }, [ids])
 
   return activeId

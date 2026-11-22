@@ -5,8 +5,8 @@ import { Section, SectionHeader } from '@/components/section'
 export function Garage() {
   return (
     <Section id="garage">
-      <SectionHeader sectionId="garage" eyebrow="Garage" title="What I’ve been building.">
-        Selected projects, many of them inspired by problems I met on the pit wall.
+      <SectionHeader sectionId="garage" eyebrow="Projects / built at race pace" title="Engineering beyond the finish line.">
+        Selected software projects shaped by race engineering: turning telemetry into insight, reducing friction and building systems that hold up under pressure.
       </SectionHeader>
 
       <ul className="mt-16 grid gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-3">
@@ -36,9 +36,13 @@ function ProjectCard({ project, carNumber }: { project: Project; carNumber: numb
       <p className="mt-10 font-mono text-[10px] uppercase tracking-widest text-accent">{project.tag}</p>
       <h3 className="mt-2 text-xl font-semibold">{project.name}</h3>
       <p className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-      <p className="mt-6 font-mono text-xs text-muted-foreground" translate="no">
-        {project.stack.join(' / ')}
-      </p>
+      <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${project.name} technologies`} translate="no">
+        {project.stack.map((technology) => (
+          <li key={technology} className="rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
+            {technology}
+          </li>
+        ))}
+      </ul>
     </a>
   )
 }
