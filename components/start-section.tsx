@@ -32,7 +32,7 @@ export function StartSection() {
               {startContent.introAfterName}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <LinkButton href="#tools">
+              <LinkButton href="#tech">
                 {startContent.exploreLabel}
                 <ArrowDown aria-hidden="true" />
               </LinkButton>

@@ -1,6 +1,6 @@
 export const toolsSectionContent = {
-  eyebrow: 'Tools / 04 domains',
-  heading: 'The tools behind the work.',
+  eyebrow: 'Tech / 04 domains',
+  heading: 'The technologies behind the work.',
   introduction:
     'I\'ve used a breadth of technologies across multiple software domains, and able to pick up new things quickly. Whatever the problem\'s required, I\'ve learnt it.',
 }
