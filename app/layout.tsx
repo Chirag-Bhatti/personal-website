@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
-import { THEME_INITIALIZATION_SCRIPT } from '@/lib/theme-preference'
+import { THEME_COLORS, THEME_INITIALIZATION_SCRIPT } from '@/lib/theme-preference'
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans', display: 'swap' })
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light dark',
-  themeColor: '#17120e',
+  themeColor: THEME_COLORS.dark,
 }
 
 export default function RootLayout({
