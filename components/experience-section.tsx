@@ -53,7 +53,7 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
             {' – '}
             {end ? <time dateTime={end.iso}>{end.label}</time> : 'Present'}
           </p>
-          <span className={cn('size-1.5 rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />
+          <span className={cn('size-1.5 -translate-y-px rounded-full', chapterSignalBackground[company.signal])} aria-hidden="true" />
           <p>
             <time dateTime={duration.iso}>{duration.label}</time>
           </p>
