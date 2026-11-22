@@ -13,7 +13,7 @@ export function ToolsSection() {
       </SectionHeader>
 
       <div className="mt-10 flex flex-col gap-4 border-y py-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-xs text-muted-foreground">{toolsSectionContent.confidenceNote}</p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Confidence levels</p>
         <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Confidence level key">
           {Object.entries(confidenceLevels).map(([key, level]) => (
             <li key={key} className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

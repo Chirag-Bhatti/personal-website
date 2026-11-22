@@ -3,7 +3,6 @@ export const toolsSectionContent = {
   heading: 'The tools behind the work.',
   introduction:
     'A working toolkit across the stack, from user-facing experiences to dependable production systems.',
-  confidenceNote: 'Example confidence indicators — adjust the tiers to match your experience.',
 }
 
 export const confidenceLevels = {
