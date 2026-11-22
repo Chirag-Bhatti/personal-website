@@ -14,8 +14,8 @@ export const profile = {
 export const sections = [
   { id: 'start', label: 'Start', sector: 'Start' },
   { id: 'tools', label: 'Tools', sector: 'Technology stack' },
-  { id: 'track', label: 'Track', sector: 'Career timeline' },
-  { id: 'garage', label: 'Garage', sector: 'Projects' },
+  { id: 'track', label: 'Experience', sector: 'Engineering journey' },
+  { id: 'garage', label: 'Projects', sector: 'Projects' },
   { id: 'finish', label: 'Finish', sector: 'Contact' },
 ] as const
 

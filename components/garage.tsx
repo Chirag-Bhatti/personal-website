@@ -5,8 +5,8 @@ import { Section, SectionHeader } from '@/components/section'
 export function Garage() {
   return (
     <Section id="garage">
-      <SectionHeader sectionId="garage" eyebrow="Garage" title="What I’ve been building.">
-        Selected projects, many of them inspired by problems I met on the pit wall.
+      <SectionHeader sectionId="garage" eyebrow="Projects / built at race pace" title="Engineering beyond the finish line.">
+        Selected software projects shaped by race engineering: turning telemetry into insight, reducing friction and building systems that hold up under pressure.
       </SectionHeader>
 
       <ul className="mt-16 grid gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-3">

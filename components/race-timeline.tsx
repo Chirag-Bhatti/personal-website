@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils'
 export function RaceTimeline() {
   return (
     <Section id="track">
-      <SectionHeader sectionId="track" eyebrow="Track / career timeline" title="A career in three chapters.">
-        Starting with what I do now, then looking back through Formula&nbsp;1 to the automotive engineering foundations that shaped my approach.
+      <SectionHeader sectionId="track" eyebrow="Experience / engineering journey" title="From the pit wall to the codebase.">
+        From power-unit test benches and Formula&nbsp;1 race weekends to software platforms, the through-line is performance, reliability and finding the limit.
       </SectionHeader>
 
       <ol className="mt-16 flex flex-col">
