@@ -60,7 +60,7 @@ function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany;
         </div>
       </header>
 
-      <ol className="mt-4 flex flex-col gap-4 border-t pt-4" aria-label={`${company.name} roles`}>
+      <ol className="mt-4 flex flex-col gap-2 border-t pt-4" aria-label={`${company.name} roles`}>
         {company.roles.map((role) => (
           <li key={`${role.title}-${role.start.year}`}>
             <ExperienceRole role={role} />
