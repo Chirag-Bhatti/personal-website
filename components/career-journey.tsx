@@ -9,7 +9,7 @@ export function CareerJourney() {
     <figure className="relative isolate aspect-[4/3] overflow-hidden rounded-lg border border-border/70 bg-card shadow-2xl shadow-black/30">
       <Image
         src="/images/career-journey.png"
-        alt="A modern sports coupe on a road, an F1 car on track, and a modern desktop setup on a platform."
+        alt="An automotive engine with a turbocharger, a Formula 1 hybrid powertrain, and a monitor displaying code."
         fill
         priority
         sizes="(min-width: 1024px) 42vw, 100vw"
