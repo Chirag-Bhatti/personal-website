@@ -1,18 +1,18 @@
-import type { Signal } from '@/lib/content'
+import type { ExperienceSignal } from '@/content/experience'
 
-export const signalText: Record<Signal, string> = {
+export const chapterSignalText: Record<ExperienceSignal, string> = {
   red: 'text-primary',
   amber: 'text-caution',
   green: 'text-accent',
 }
 
-export const signalBg: Record<Signal, string> = {
+export const chapterSignalBackground: Record<ExperienceSignal, string> = {
   red: 'bg-primary',
   amber: 'bg-caution',
   green: 'bg-accent',
 }
 
-export function formatDuration(months: number) {
+export function formatExperienceDuration(months: number) {
   const years = Math.floor(months / 12)
   const rest = months % 12
   return {

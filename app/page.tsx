@@ -1,20 +1,24 @@
-import { RaceChrome } from '@/components/race-chrome'
-import { Hero } from '@/components/hero'
-import { RaceTimeline } from '@/components/race-timeline'
-import { Skills } from '@/components/skills'
-import { Garage } from '@/components/garage'
-import { Finish } from '@/components/finish'
+import { SiteNavigation } from '@/components/site-navigation'
+import { StartSection } from '@/components/start-section'
+import { ToolsSection } from '@/components/tools-section'
+import { ExperienceSection } from '@/components/experience-section'
+import { ProjectsSection } from '@/components/projects-section'
+import { FinishSection } from '@/components/finish-section'
 
 export default function Page() {
   return (
     <>
-      <RaceChrome />
-      <main id="main" tabIndex={-1} className="outline-none">
-        <Hero />
-        <Skills />
-        <RaceTimeline />
-        <Garage />
-        <Finish />
+      <SiteNavigation />
+      <main
+        id="main"
+        tabIndex={-1}
+        className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+      >
+        <StartSection />
+        <ToolsSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <FinishSection />
       </main>
     </>
   )

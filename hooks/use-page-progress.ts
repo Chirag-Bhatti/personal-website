@@ -6,7 +6,7 @@ import { useEffect, useEffectEvent, useState } from 'react'
  * Streams scroll progress (0–1) to a callback without triggering React renders,
  * so consumers can write transient values straight to the DOM.
  */
-export function useScrollProgress(onProgress: (progress: number) => void) {
+export function usePageScrollProgress(onProgress: (progress: number) => void) {
   const emit = useEffectEvent(onProgress)
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function useScrollProgress(onProgress: (progress: number) => void) {
 }
 
 /** Tracks the last section to cross the reading line, re-rendering only on change. */
-export function useActiveSection<T extends string>(ids: readonly T[]) {
+export function useActivePageSection<T extends string>(ids: readonly T[]) {
   const [activeId, setActiveId] = useState<T>(ids[0])
 
   useEffect(() => {
