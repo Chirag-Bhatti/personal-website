@@ -1,7 +1,7 @@
 import { ArrowDown } from 'lucide-react'
 import { heroStats, startContent } from '@/content/start'
 import { siteProfile } from '@/content/profile'
-import { CodePanel } from '@/components/code-panel'
+import { CareerJourney } from '@/components/career-journey'
 import { LinkButton } from '@/components/link-button'
 import { StartLights } from '@/components/start-lights'
 import { cn } from '@/lib/utils'
@@ -44,7 +44,7 @@ export function StartSection() {
         </div>
 
         <div className="lights-out-reveal relative min-w-0">
-          <CodePanel />
+          <CareerJourney />
         </div>
       </div>
 
