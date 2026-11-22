@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
 
 const stages = ['Automotive', 'Formula 1', 'Software engineering']
 
@@ -20,7 +21,7 @@ export function CareerJourney() {
       <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 px-4 pb-4 pt-12 font-mono text-[9px] uppercase tracking-[0.16em] text-foreground/75 sm:px-5 sm:pb-5 sm:text-[10px]">
         {stages.map((stage, index) => (
           <span key={stage} className="flex min-w-0 items-center gap-2">
-            {index > 0 && <span className="h-px w-3 shrink-0 bg-accent/70 sm:w-5" aria-hidden="true" />}
+            {index > 0 && <ArrowRight className="size-3 shrink-0 text-accent" aria-hidden="true" />}
             <span className="truncate">{stage}</span>
           </span>
         ))}
