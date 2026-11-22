@@ -9,7 +9,7 @@ export function CareerJourney() {
     <figure className="relative isolate aspect-[4/3] overflow-hidden rounded-lg border border-border/70 bg-card shadow-2xl shadow-black/30">
       <Image
         src="/images/career-journey.png"
-        alt="A sports coupe on a road, a Formula racing car on track, and a computer setup on a raised platform."
+        alt="A modern sports coupe on a road, an F1 car on track, and a modern desktop setup on a platform."
         fill
         priority
         sizes="(min-width: 1024px) 42vw, 100vw"
@@ -19,11 +19,11 @@ export function CareerJourney() {
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/10"
         aria-hidden="true"
       />
-      <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-1 px-4 pb-4 pt-12 font-mono text-[8px] uppercase tracking-[0.12em] text-foreground/75 sm:gap-2 sm:px-5 sm:pb-5 sm:text-[10px] sm:tracking-[0.16em]">
+      <figcaption className="absolute inset-x-0 bottom-0 grid grid-cols-[minmax(0,1fr)_0_minmax(0,1fr)_0_minmax(0,1fr)] items-end pb-4 pt-12 font-mono text-[8px] uppercase tracking-[0.12em] text-foreground/75 sm:pb-5 sm:text-[10px] sm:tracking-[0.16em]">
         {stages.map((stage, index) => (
           <Fragment key={stage}>
-            <span className="whitespace-nowrap">{stage}</span>
-            {index < stages.length - 1 && <ArrowRight className="size-3 shrink-0 text-accent" aria-hidden="true" />}
+            <span className="justify-self-center whitespace-nowrap">{stage}</span>
+            {index < stages.length - 1 && <ArrowRight className="size-3 shrink-0 -translate-x-1/2 text-accent" aria-hidden="true" />}
           </Fragment>
         ))}
       </figcaption>
