@@ -1,73 +1,59 @@
-import { skillUnit, type SkillsComponent } from '@/lib/content'
 import { Section, SectionHeader } from '@/components/section'
-import { cn } from '@/lib/utils'
 
-const SEGMENTS = 20
-const SEGMENT_INDICES = Array.from({ length: SEGMENTS }, (_, i) => i)
-
-function segmentColor(index: number) {
-  if (index >= SEGMENTS - 4) return 'bg-primary'
-  if (index >= SEGMENTS - 9) return 'bg-caution'
-  return 'bg-accent'
-}
+const toolsets = [
+  {
+    number: '01',
+    name: 'Frontend',
+    descriptor: 'The interface layer',
+    tools: ['TypeScript', 'React', 'Next.js', 'HTML & CSS', 'Tailwind CSS', 'Accessibility'],
+  },
+  {
+    number: '02',
+    name: 'Backend',
+    descriptor: 'Services & data',
+    tools: ['Node.js', 'Python', 'PostgreSQL', 'REST APIs', 'FastAPI', 'SQL'],
+  },
+  {
+    number: '03',
+    name: 'Infrastructure',
+    descriptor: 'Cloud & platforms',
+    tools: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'Git'],
+  },
+  {
+    number: '04',
+    name: 'DevOps / SRE',
+    descriptor: 'Delivery & reliability',
+    tools: ['CI/CD', 'GitHub Actions', 'Observability', 'Prometheus', 'Grafana', 'Incident response'],
+  },
+]
 
 export function Skills() {
   return (
-    <Section id="skills">
-      <SectionHeader sectionId="skills" eyebrow="Skills" title="A hybrid engineer.">
-        Like a modern engine, my skill set is a hybrid of different areas.
+    <Section id="tools">
+      <SectionHeader sectionId="tools" eyebrow="Tools / 04 domains" title="The tools behind the work.">
+        A working toolkit across the stack, from user-facing experiences to dependable production systems.
       </SectionHeader>
 
-      <ul className="mt-16 grid gap-4 lg:grid-cols-3">
-        {skillUnit.map((component) => (
-          <li key={component.code} className="flex">
-            <SkillsCard component={component} />
+      <ul className="mt-16 grid gap-4 sm:grid-cols-2">
+        {toolsets.map((toolset) => (
+          <li key={toolset.number}>
+            <article className="group flex h-full flex-col rounded-lg border bg-card p-6 transition-colors hover:border-primary/50 md:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-mono text-xs tabular-nums text-accent">{toolset.number} / 04</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{toolset.descriptor}</span>
+              </div>
+              <h3 className="mt-8 text-xl font-semibold tracking-tight">{toolset.name}</h3>
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${toolset.name} technologies`}>
+                {toolset.tools.map((tool) => (
+                  <li key={tool} className="rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </li>
         ))}
       </ul>
     </Section>
-  )
-}
-
-function SkillsCard({ component }: { component: SkillsComponent }) {
-  return (
-    <article className="flex w-full flex-col rounded-lg border bg-card p-6">
-      <div className="flex items-center justify-between">
-        <span className="rounded-sm bg-secondary px-2 py-1 font-mono text-xs font-semibold tracking-wider" translate="no">
-          {component.code}
-        </span>
-        <span className="font-mono text-xs tabular-nums text-muted-foreground">{component.charge}% SOC</span>
-      </div>
-      <h3 className="mt-6 text-lg font-semibold">{component.name}</h3>
-      <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{component.description}</p>
-
-      <ChargeMeter label={`${component.name} proficiency`} value={component.charge} />
-
-      <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${component.name} skills`}>
-        {component.skills.map((skill) => (
-          <li key={skill} className="rounded-sm border px-2.5 py-1 text-xs text-muted-foreground">
-            {skill}
-          </li>
-        ))}
-      </ul>
-    </article>
-  )
-}
-
-function ChargeMeter({ label, value }: { label: string; value: number }) {
-  const lit = Math.round((value / 100) * SEGMENTS)
-  return (
-    <div
-      className="mt-6 flex gap-1"
-      role="meter"
-      aria-label={label}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={value}
-    >
-      {SEGMENT_INDICES.map((i) => (
-        <span key={i} className={cn('h-6 flex-1 rounded-[2px]', i < lit ? segmentColor(i) : 'bg-secondary')} />
-      ))}
-    </div>
   )
 }

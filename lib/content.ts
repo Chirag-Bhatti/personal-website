@@ -13,7 +13,7 @@ export const profile = {
 
 export const sections = [
   { id: 'start', label: 'Start', sector: 'Start' },
-  { id: 'skills', label: 'Skills', sector: 'Skills' },
+  { id: 'tools', label: 'Tools', sector: 'Technology stack' },
   { id: 'track', label: 'The Track', sector: 'Sectors 1–3' },
   { id: 'garage', label: 'Garage', sector: 'Projects' },
   { id: 'finish', label: 'Finish', sector: 'Contact' },
