@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Fragment } from 'react'
 import { ArrowRight } from 'lucide-react'
 
-const stages = ['Automotive', 'Formula 1', 'Software engineering']
+const stages = ['Automotive', 'Formula 1', 'Software']
 
 export function CareerJourney() {
   return (
