@@ -34,7 +34,7 @@ export function RaceChrome() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-6 px-6">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 px-6 sm:gap-6">
           <a
             href="#start"
             className="flex items-center gap-3 rounded-sm font-mono text-sm tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
@@ -94,7 +94,7 @@ function SectionNav({ activeId }: { activeId: SectionId }) {
                 href={`#${s.id}`}
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
-                  'block rounded-sm px-2.5 py-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring',
+                  'block rounded-sm px-1 py-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring sm:px-2.5',
                   isActive && 'text-foreground',
                 )}
               >
@@ -131,7 +131,7 @@ function TrackMap({ ref }: { ref: React.Ref<TrackMapHandle> }) {
   )
 
   return (
-    <svg viewBox="0 0 200 140" className="h-9 w-14 shrink-0 sm:h-10 sm:w-16" aria-hidden="true">
+    <svg viewBox="0 0 200 140" className="h-9 w-14 shrink-0 translate-x-3.5 sm:h-10 sm:w-16 sm:translate-x-2" aria-hidden="true">
       <path d={TRACK_PATH} fill="none" stroke="var(--secondary)" strokeWidth="8" strokeLinejoin="round" />
       <path
         ref={pathRef}
