@@ -17,7 +17,7 @@ export function ToolsSection() {
         <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Confidence level key">
           {Object.entries(confidenceLevels).map(([key, level]) => (
             <li key={key} className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-              <span aria-hidden="true" className={level.className}>{level.marker}</span>
+              <span aria-hidden="true" className={`size-2 rounded-full ${level.className}`} />
               {level.label}
             </li>
           ))}
@@ -46,12 +46,9 @@ export function ToolsSection() {
                         const level = confidenceLevels[item.confidence as keyof typeof confidenceLevels]
 
                         return (
-                          <li key={item.name} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
+                          <li key={item.name} aria-label={`${item.name}, ${level.label} confidence`} className="flex items-center gap-3 rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
                             <span>{item.name}</span>
-                            <span className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-wider" aria-label={`${level.label} confidence`}>
-                              <span aria-hidden="true" className={level.className}>{level.marker}</span>
-                              {level.label}
-                            </span>
+                            <span aria-hidden="true" className={`size-2 shrink-0 rounded-full ${level.className}`} />
                           </li>
                         )
                       })}

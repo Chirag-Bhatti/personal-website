@@ -7,9 +7,9 @@ export const toolsSectionContent = {
 }
 
 export const confidenceLevels = {
-  core: { label: 'Core strength', marker: '●', className: 'text-accent' },
-  comfortable: { label: 'Comfortable', marker: '●', className: 'text-primary' },
-  familiar: { label: 'Familiar', marker: '●', className: 'text-muted-foreground' },
+  core: { label: 'Core strength', className: 'bg-accent' },
+  comfortable: { label: 'Comfortable', className: 'bg-caution' },
+  familiar: { label: 'Familiar', className: 'bg-muted-foreground' },
 } as const
 
 export const toolCategories = [
