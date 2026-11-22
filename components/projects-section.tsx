@@ -14,9 +14,9 @@ export function ProjectsSection() {
         {projectsSectionContent.introduction}
       </SectionHeader>
 
-      <ul className="mt-16 grid gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-3">
+      <ul className="mt-16 grid gap-4 md:grid-cols-3">
         {portfolioProjects.map((project, index) => (
-          <li key={project.name} className="bg-background">
+          <li key={project.name}>
             <ProjectCard project={project} carNumber={index + 1} />
           </li>
         ))}
@@ -28,7 +28,7 @@ export function ProjectsSection() {
 function ProjectCard({ project, carNumber }: { project: PortfolioProject; carNumber: number }) {
   const isExternal = project.href?.startsWith('http')
   const card = (
-    <article className={cn('flex h-full flex-col p-6', project.href && 'transition-colors hover:bg-card')}>
+    <article className={cn('flex h-full flex-col rounded-lg border bg-card p-6 md:p-8', project.href && 'transition-colors hover:border-primary/50')}>
       <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
         <span className="tabular-nums">CAR {String(carNumber).padStart(2, '0')}</span>
         {project.href ? (
