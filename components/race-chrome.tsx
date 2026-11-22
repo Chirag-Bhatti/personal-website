@@ -14,10 +14,18 @@ const TRACK_PATH =
 export function RaceChrome() {
   const activeId = useActiveSection(sectionIds)
   const barRef = useRef<HTMLDivElement>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
+  const percentRef = useRef<HTMLSpanElement>(null)
   const trackRef = useRef<TrackMapHandle>(null)
 
   useScrollProgress((progress) => {
+    const percent = Math.round(progress * 100)
     if (barRef.current) barRef.current.style.transform = `scaleX(${progress})`
+    if (progressRef.current) {
+      progressRef.current.setAttribute('aria-valuenow', String(percent))
+      progressRef.current.setAttribute('aria-valuetext', `${percent}% complete`)
+    }
+    if (percentRef.current) percentRef.current.textContent = `${String(percent).padStart(3, '0')}%`
     trackRef.current?.setProgress(progress)
   })
 
@@ -44,12 +52,34 @@ export function RaceChrome() {
             <ThemeToggle />
           </div>
         </div>
-        <div className="h-0.5 w-full bg-secondary" aria-hidden="true">
-          <div ref={barRef} className="h-full origin-left scale-x-0 bg-primary" />
+        <div className="border-t">
+          <div className="mx-auto flex h-12 max-w-6xl items-center gap-3 px-6">
+            <div className="flex min-w-0 items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              <span>Lap 1/1</span>
+              <span aria-hidden="true">/</span>
+              <span className="truncate text-foreground">{active.sector}</span>
+            </div>
+            <TrackMap ref={trackRef} />
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <div
+                ref={progressRef}
+                role="progressbar"
+                aria-label={`Page progress through ${active.label}`}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={0}
+                aria-valuetext="0% complete"
+                className="h-1.5 min-w-8 flex-1 overflow-hidden rounded-full bg-secondary"
+              >
+                <div ref={barRef} className="h-full origin-left scale-x-0 rounded-full bg-primary" />
+              </div>
+              <span ref={percentRef} className="w-9 text-right font-mono text-[10px] tabular-nums text-muted-foreground">
+                000%
+              </span>
+            </div>
+          </div>
         </div>
       </header>
-
-      <TrackMap ref={trackRef} sector={active.sector} label={active.label} />
     </>
   )
 }
@@ -82,18 +112,9 @@ function SectionNav({ activeId }: { activeId: SectionId }) {
 
 type TrackMapHandle = { setProgress: (progress: number) => void }
 
-function TrackMap({
-  ref,
-  sector,
-  label,
-}: {
-  ref: React.Ref<TrackMapHandle>
-  sector: string
-  label: string
-}) {
+function TrackMap({ ref }: { ref: React.Ref<TrackMapHandle> }) {
   const pathRef = useRef<SVGPathElement>(null)
   const carRef = useRef<SVGGElement>(null)
-  const percentRef = useRef<HTMLSpanElement>(null)
   const lengthRef = useRef(0)
 
   useImperativeHandle(
@@ -106,49 +127,31 @@ function TrackMap({
         path.style.strokeDashoffset = String(1 - progress)
         const point = path.getPointAtLength(lengthRef.current * progress)
         carRef.current?.setAttribute('transform', `translate(${point.x.toFixed(1)} ${point.y.toFixed(1)})`)
-        if (percentRef.current) {
-          percentRef.current.textContent = `${String(Math.round(progress * 100)).padStart(3, '0')}%`
-        }
       },
     }),
     [],
   )
 
   return (
-    <aside
-      aria-label="Race progress"
-      className="fixed right-6 bottom-6 z-40 hidden w-56 rounded-lg border bg-card/90 p-4 shadow-2xl backdrop-blur-md lg:block"
-    >
-      <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        <span>Lap 1/1</span>
-        <span ref={percentRef} className="text-foreground tabular-nums">
-          000%
-        </span>
-      </div>
-      <svg viewBox="0 0 200 140" className="mt-3 h-auto w-full" aria-hidden="true">
-        <path d={TRACK_PATH} fill="none" stroke="var(--secondary)" strokeWidth="8" strokeLinejoin="round" />
-        <path
-          ref={pathRef}
-          d={TRACK_PATH}
-          pathLength={1}
-          fill="none"
-          stroke="var(--primary)"
-          strokeWidth="3"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          strokeDasharray="1"
-          strokeDashoffset="1"
-        />
-        <line x1="40" y1="113" x2="40" y2="127" stroke="var(--foreground)" strokeWidth="2" />
-        <g ref={carRef} transform="translate(40 120)">
-          <circle r="9" fill="var(--accent)" opacity="0.2" />
-          <circle r="4.5" fill="var(--accent)" />
-        </g>
-      </svg>
-      <div className="mt-3 border-t pt-3">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{sector}</p>
-        <p className="text-sm font-medium">{label}</p>
-      </div>
-    </aside>
+    <svg viewBox="0 0 200 140" className="h-9 w-14 shrink-0 sm:h-10 sm:w-16" aria-hidden="true">
+      <path d={TRACK_PATH} fill="none" stroke="var(--secondary)" strokeWidth="8" strokeLinejoin="round" />
+      <path
+        ref={pathRef}
+        d={TRACK_PATH}
+        pathLength={1}
+        fill="none"
+        stroke="var(--primary)"
+        strokeWidth="3"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        strokeDasharray="1"
+        strokeDashoffset="1"
+      />
+      <line x1="40" y1="113" x2="40" y2="127" stroke="var(--foreground)" strokeWidth="2" />
+      <g ref={carRef} transform="translate(40 120)">
+        <circle r="9" fill="var(--accent)" opacity="0.2" />
+        <circle r="4.5" fill="var(--accent)" />
+      </g>
+    </svg>
   )
 }
