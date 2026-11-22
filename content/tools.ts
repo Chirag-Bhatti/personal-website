@@ -9,21 +9,33 @@ export const toolCategories = [
   {
     name: 'Frontend',
     descriptor: 'The interface layer',
-    tools: ['TypeScript', 'React', 'Next.js', 'HTML & CSS', 'Tailwind CSS', 'Accessibility'],
+    groups: [
+      { name: 'Languages', items: ['TypeScript', 'HTML & CSS'] },
+      { name: 'Frameworks', items: ['React', 'Next.js'] },
+      { name: 'Tools', items: ['Tailwind CSS', 'Accessibility'] },
+    ],
   },
   {
     name: 'Backend',
     descriptor: 'Services & data',
-    tools: ['Node.js', 'Python', 'PostgreSQL', 'REST APIs', 'FastAPI', 'SQL'],
+    groups: [
+      { name: 'Languages', items: ['Python', 'SQL'] },
+      { name: 'Frameworks', items: ['FastAPI'] },
+      { name: 'Tools', items: ['Node.js', 'PostgreSQL', 'REST APIs'] },
+    ],
   },
   {
     name: 'Infrastructure',
     descriptor: 'Cloud & platforms',
-    tools: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'Git'],
+    groups: [
+      { name: 'Tools', items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'Git'] },
+    ],
   },
   {
     name: 'DevOps / SRE',
     descriptor: 'Delivery & reliability',
-    tools: ['CI/CD', 'GitHub Actions', 'Observability', 'Prometheus', 'Grafana', 'Incident response'],
+    groups: [
+      { name: 'Tools', items: ['CI/CD', 'GitHub Actions', 'Observability', 'Prometheus', 'Grafana', 'Incident response'] },
+    ],
   },
 ]

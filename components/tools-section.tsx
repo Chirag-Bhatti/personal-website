@@ -23,13 +23,22 @@ export function ToolsSection() {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{category.descriptor}</span>
               </div>
               <h3 className="mt-8 text-xl font-semibold tracking-tight">{category.name}</h3>
-              <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${category.name} technologies`}>
-                {category.tools.map((tool) => (
-                  <li key={tool} className="rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
-                    {tool}
-                  </li>
+              <div className="mt-6 flex flex-col gap-5">
+                {category.groups.map((group) => (
+                  <section key={group.name} aria-label={`${category.name} ${group.name}`}>
+                    <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {group.name}
+                    </h4>
+                    <ul className="mt-2 flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="rounded-sm border bg-background px-3 py-2 font-mono text-xs text-muted-foreground">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
                 ))}
-              </ul>
+              </div>
             </article>
           </li>
         ))}
