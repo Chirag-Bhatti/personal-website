@@ -19,16 +19,10 @@ export function ExperienceSection() {
         {experienceSectionContent.introduction}
       </SectionHeader>
 
-      <ol className="relative mt-12 flex flex-col gap-8 before:absolute before:bottom-8 before:left-[1.125rem] before:top-4 before:w-px before:bg-border sm:mt-16 sm:gap-10 sm:before:left-[1.375rem]">
+      <ol className="mt-12 flex flex-col gap-8 sm:mt-16 sm:gap-10">
         {experienceCompanies.map((company, index) => (
-          <li key={company.name} className="relative pl-12 sm:pl-20">
-            <span
-              className="absolute left-0 top-1 grid size-9 place-items-center rounded-full border bg-background font-mono text-[10px] tabular-nums text-muted-foreground sm:size-11"
-              aria-hidden="true"
-            >
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <ExperienceCompanyCard company={company} />
+          <li key={company.name}>
+            <ExperienceCompanyCard company={company} index={index + 1} />
           </li>
         ))}
       </ol>
@@ -36,7 +30,7 @@ export function ExperienceSection() {
   )
 }
 
-function ExperienceCompanyCard({ company }: { company: ExperienceCompany }) {
+function ExperienceCompanyCard({ company, index }: { company: ExperienceCompany; index: number }) {
   const start = formatExperienceDate(company.start)
   const end = company.end ? formatExperienceDate(company.end) : null
   const duration = formatExperienceDuration(company.duration)
@@ -45,8 +39,11 @@ function ExperienceCompanyCard({ company }: { company: ExperienceCompany }) {
     <article className="rounded-lg border bg-card p-5 sm:p-7">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
         <div className="min-w-0">
-          <p className={cn('font-mono text-[10px] uppercase tracking-[0.2em]', chapterSignalText[company.signal])}>
-            {company.sector}
+          <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <span className="tabular-nums text-muted-foreground" aria-hidden="true">
+              {String(index).padStart(2, '0')} /
+            </span>
+            <span className={chapterSignalText[company.signal]}>{company.sector}</span>
           </p>
           <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">{company.name}</h3>
         </div>
